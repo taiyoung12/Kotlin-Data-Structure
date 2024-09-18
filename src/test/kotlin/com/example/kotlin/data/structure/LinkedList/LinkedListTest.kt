@@ -2,6 +2,7 @@ package com.example.kotlin.data.structure.LinkedList
 
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestTemplate
 
 class LinkedListTest {
 
@@ -97,6 +98,66 @@ class LinkedListTest {
         actual.addNode(CustomNode(4), actual.getSize()+1)
 
         assertTrue(actual.head?.next?.next?.next?.value == 4)
+    }
+
+    @Test
+    fun `연결리스트의 노드를 삭제할 수 있다`(){
+        val actual = getLinkedList()
+        assertTrue(actual.head?.next?.value == 2)
+
+        actual.deleteNode(1)
+
+        assertTrue(actual.head?.next?.value == 3)
+    }
+
+    @Test
+    fun `연결리스트의 head 노드를 삭제할 수 있다`(){
+        val actual = getLinkedList()
+        assertTrue(actual.head?.value == 1)
+
+        actual.deleteNode(0)
+
+        assertTrue(actual.head?.value == 2)
+    }
+
+    @Test
+    fun `연결리스트의 tail 노드를 삭제할 수 있다`(){
+        val actual = getLinkedList()
+        assertTrue(actual.tail?.value == 3)
+
+        actual.deleteNode(actual.getSize()-1)
+
+        assertTrue(actual.tail?.value == 2)
+    }
+
+    @Test
+    fun `연결리스트의 인덱스를 받으면 해당 인덱스 노드를 조회할 수 있다`(){
+        val actual = getLinkedList()
+        assertTrue(actual.getNode(1)?.value == 2)
+    }
+
+    @Test
+    fun `조회할 인덱스 값이 논리에 맞지 않거나 없다면 null을 반환한다`(){
+        val actual = getLinkedList()
+        assertTrue(actual.getNode(10) == null)
+    }
+
+    @Test
+    fun `연결리스트의 임의의 노드 value를 수정할 수 있다`(){
+        val actual = getLinkedList()
+
+        actual.changeNode(1, 10)
+
+        assertTrue(actual.getNode(1)?.value == 10)
+    }
+
+    @Test
+    fun `수정할 인덱스 값이 논리에 맞지 않거나 없다면 null을 반환한다`(){
+        val actual = getLinkedList()
+
+        actual.changeNode(10, 0)
+
+        assertTrue(actual.getNode(10) == null)
     }
 
     private fun getLinkedList(): CustomLinked {

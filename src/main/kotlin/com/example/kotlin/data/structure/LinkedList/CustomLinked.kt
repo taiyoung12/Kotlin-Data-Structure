@@ -4,6 +4,7 @@ class CustomLinked {
     private var _head: CustomNode? = null
     private val _nodes = mutableListOf<CustomNode>()
     private var _tail: CustomNode? = null
+
     val nodes: List<CustomNode> = _nodes
     val head: CustomNode?
         get() = _head
@@ -15,6 +16,29 @@ class CustomLinked {
         _nodes.add(node)
         addHead()
         addTail(node)
+    }
+
+    fun addNode(node: CustomNode, index: Int) {
+        when(index){
+            0 -> {
+                _nodes.add(0, node)
+                _nodes[0].next = _nodes[1]
+                addHead()
+            }
+            else -> {
+                if(index > _nodes.size){
+                   addNode(node)
+                }else{
+                    _nodes.add(index, node)
+                    _nodes[index-1].next = _nodes[index]
+                    _nodes[index].next = _nodes[index + 1]
+                }
+            }
+        }
+    }
+
+    fun getSize(): Int{
+        return nodes.size
     }
 
     private fun addTail(node: CustomNode) {

@@ -7,6 +7,12 @@ class CustomTree(
         insertRecursively(root, value)
     }
 
+    fun getNode(): CustomTreeNode? {
+        while (root){
+
+        }
+    }
+
     private fun insertRecursively(node: CustomTreeNode, value: Int) {
         if (node.leftNode == null) {
             node.addLeftNode(CustomTreeNode(value))

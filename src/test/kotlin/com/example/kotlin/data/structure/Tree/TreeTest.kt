@@ -96,4 +96,20 @@ class TreeTest {
         assertTrue { tree.root.rightNode?.leftNode?.value == 6 }
         assertTrue { tree.root.rightNode?.rightNode?.value == 7 }
     }
+
+    fun `트리에서 삽입할 노드의 위치를 찾을 수 있다`(){
+        val tree = CustomTree(CustomTreeNode(1))
+
+        tree.insert(2)
+        tree.insert(3)
+        tree.insert(4)
+        tree.insert(5)
+        tree.insert(6)
+        tree.insert(7)
+
+        val node = tree.getNode()
+
+        assertTrue { tree.root.leftNode?.leftNode?.leftNode == node }
+    }
+
 }
